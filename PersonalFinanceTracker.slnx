@@ -1,5 +1,7 @@
 <Solution>
   <Project Path="PersonalFinanceTracker.Api/PersonalFinanceTracker.Api.csproj" />
   <Project Path="PersonalFinanceTracker.AppHost/PersonalFinanceTracker.AppHost.csproj" />
+  <Project Path="PersonalFinanceTracker.Modules/PersonalFinanceTracker.Modules.csproj" Id="5bc2fed6-e250-43e2-8120-ffd486ba0a33" />
   <Project Path="PersonalFinanceTracker.ServiceDefaults/PersonalFinanceTracker.ServiceDefaults.csproj" />
+  <Project Path="PersonalFinanceTracker.Shared/PersonalFinanceTracker.Shared.csproj" Id="ef343524-cd41-4449-afab-3b0006a85548" />
 </Solution>
