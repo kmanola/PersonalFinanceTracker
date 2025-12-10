@@ -7,11 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MediatR" Version="14.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\PersonalFinanceTracker.ServiceDefaults\PersonalFinanceTracker.ServiceDefaults.csproj" />
+    <ProjectReference Include="..\PersonalFinanceTracker.Shared\PersonalFinanceTracker.Shared.csproj" />
+    <ProjectReference Include="..\Modules.Finance.Features\Modules.Finance.Features.csproj" />
+    <ProjectReference Include="..\Modules.Users.Features\Modules.Users.Features.csproj" />
+    <ProjectReference Include="..\Modules.Reporting.Features\Modules.Reporting.Features.csproj" />
   </ItemGroup>
 
 </Project>

@@ -9,7 +9,11 @@
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="12.1.1" />
     <PackageReference Include="MediatR" Version="14.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Modules.Reporting.Domain\Modules.Reporting.Domain.csproj" />
+    <ProjectReference Include="..\PersonalFinanceTracker.Shared\PersonalFinanceTracker.Shared.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,7 +1,28 @@
 <Solution>
+  <Folder Name="/Modules/" />
+  <Folder Name="/Modules/Common/">
+    <Project Path="Modules.Common.Features/Modules.Common.Features.csproj" Id="24b519ff-90c8-40f1-805f-529eb29c4f0f" />
+  </Folder>
+  <Folder Name="/Modules/Finance/">
+    <Project Path="Modules.Finance.Domain/Modules.Finance.Domain.csproj" Id="59326920-728a-43f0-85d7-92c5e0136fc5" />
+    <Project Path="Modules.Finance.Features/Modules.Finance.Features.csproj" Id="e867259b-a7cf-43dc-964d-dea7a12f96a7" />
+    <Project Path="Modules.Finance.Infrastructure/Modules.Finance.Infrastructure.csproj" Id="88784593-3739-47f1-9c83-1f8de9a71b29" />
+    <Project Path="Modules.Finance.PublicApi/Modules.Finance.PublicApi.csproj" Id="2b090ec2-c09b-481d-947b-4ef62860f97a" />
+  </Folder>
+  <Folder Name="/Modules/Reporting/">
+    <Project Path="Modules.Reporting.Domain/Modules.Reporting.Domain.csproj" Id="39d3f632-14dd-44ff-9be6-de232bc5aa1f" />
+    <Project Path="Modules.Reporting.Features/Modules.Reporting.Features.csproj" Id="446fe7e0-b9ae-402f-8097-249ef586ffcf" />
+    <Project Path="Modules.Reporting.Infrastructure/Modules.Reporting.Infrastructure.csproj" Id="20e4e231-3bca-418a-bb98-df048e254b8f" />
+    <Project Path="Modules.Reporting.PublicApi/Modules.Reporting.PublicApi.csproj" Id="12dea497-0421-4290-9d5f-44e7da4db4ec" />
+  </Folder>
+  <Folder Name="/Modules/Users/">
+    <Project Path="Modules.Users.Domain/Modules.Users.Domain.csproj" Id="6cc4276a-58b9-4c4e-b45f-9fbd518552d3" />
+    <Project Path="Modules.Users.Features/Modules.Users.Features.csproj" Id="29f681d9-82c9-4623-8708-294841001eba" />
+    <Project Path="Modules.Users.Infrastructure/Modules.Users.Infrastructure.csproj" Id="f8fc6346-2c05-4c68-9078-d4720b730e7f" />
+    <Project Path="Modules.Users.PublicApi/Modules.Users.PublicApi.csproj" Id="7f25ebd2-1a3a-434f-9107-90808c4a602c" />
+  </Folder>
   <Project Path="PersonalFinanceTracker.Api/PersonalFinanceTracker.Api.csproj" />
   <Project Path="PersonalFinanceTracker.AppHost/PersonalFinanceTracker.AppHost.csproj" />
-  <Project Path="PersonalFinanceTracker.Modules/PersonalFinanceTracker.Modules.csproj" Id="5bc2fed6-e250-43e2-8120-ffd486ba0a33" />
   <Project Path="PersonalFinanceTracker.ServiceDefaults/PersonalFinanceTracker.ServiceDefaults.csproj" />
   <Project Path="PersonalFinanceTracker.Shared/PersonalFinanceTracker.Shared.csproj" Id="ef343524-cd41-4449-afab-3b0006a85548" />
 </Solution>
