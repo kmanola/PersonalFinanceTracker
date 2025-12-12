@@ -7,12 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="CsvHelper" Version="33.1.0" />
     <PackageReference Include="FluentValidation" Version="12.1.1" />
     <PackageReference Include="MediatR" Version="14.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Modules.Finance.Domain\Modules.Finance.Domain.csproj" />
+    <ProjectReference Include="..\Modules.Finance.Infrastructure\Modules.Finance.Infrastructure.csproj" />
     <ProjectReference Include="..\PersonalFinanceTracker.Shared\PersonalFinanceTracker.Shared.csproj" />
   </ItemGroup>
 
