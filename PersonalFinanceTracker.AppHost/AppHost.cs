@@ -8,6 +8,8 @@ var endpoint = builder.AddParameter("postgres-endpoint", secret: true);
 var userName = builder.AddParameter("postgres-username", secret: true);
 var password = builder.AddParameter("postgres-password", secret: true);
 
+builder.AddAzureProvisioning();
+
 var postgres = builder.AddAzurePostgresFlexibleServer("postgres")
     .WithPasswordAuthentication(userName, password);
 
