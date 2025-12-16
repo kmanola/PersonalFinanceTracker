@@ -6,9 +6,17 @@ using PersonalFinanceTracker.Api.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.AddServiceDefaults();
-
-builder.AddNpgsqlDbContext<FinanceDbContext>("postgresdb");
+if (builder.Environment.IsProduction())
+{
+    var connectionString = builder.Configuration.GetConnectionString("postgresdb");
+    builder.Services.AddDbContext<FinanceDbContext>(options =>
+        options.UseNpgsql(connectionString));
+}
+else
+{
+    builder.AddServiceDefaults();
+    builder.AddNpgsqlDbContext<FinanceDbContext>("postgresdb");
+}
 
 builder.Services.AddScoped<ICsvParserService, CsvParserService>();
 
@@ -23,12 +31,21 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-app.MapDefaultEndpoints();
+if (!app.Environment.IsProduction())
+{
+    app.MapDefaultEndpoints();
+}
 
-// Apply migrations BEFORE setting up routes
-await app.ApplyMigrationsAsync();
+try
+{
+    await app.ApplyMigrationsAsync();
+}
+catch (Exception ex)
+{
+    var logger = app.Services.GetRequiredService<ILogger<Program>>();
+    logger.LogError(ex, "Failed to apply migrations. Application will continue but database may not be ready.");
+}
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
@@ -38,21 +55,31 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-// Map minimal API endpoints
 app.MapGet("/", () => "Hello World!");
 
-// Add a migration status endpoint to verify
 app.MapGet("/migrations/status", async (FinanceDbContext db) =>
 {
-    var appliedMigrations = await db.Database.GetAppliedMigrationsAsync();
-    var pendingMigrations = await db.Database.GetPendingMigrationsAsync();
-    
-    return Results.Ok(new
+    try
     {
-        Applied = appliedMigrations.ToList(),
-        Pending = pendingMigrations.ToList(),
-        CanConnect = await db.Database.CanConnectAsync()
-    });
+        var appliedMigrations = await db.Database.GetAppliedMigrationsAsync();
+        var pendingMigrations = await db.Database.GetPendingMigrationsAsync();
+        var canConnect = await db.Database.CanConnectAsync();
+
+        return Results.Ok(new
+        {
+            Applied = appliedMigrations.ToList(),
+            Pending = pendingMigrations.ToList(),
+            CanConnect = canConnect
+        });
+    }
+    catch (Exception ex)
+    {
+        return Results.Ok(new
+        {
+            Error = ex.Message,
+            StackTrace = ex.StackTrace
+        });
+    }
 });
 
 app.Run();

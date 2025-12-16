@@ -8,11 +8,12 @@ public static class MigrationExtensions
     public static async Task ApplyMigrationsAsync(this WebApplication app)
     {
         using var scope = app.Services.CreateScope();
-        var dbContext = scope.ServiceProvider.GetRequiredService<FinanceDbContext>();
         var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
         
         try
         {
+            var dbContext = scope.ServiceProvider.GetRequiredService<FinanceDbContext>();
+            
             logger.LogInformation("Checking for pending database migrations...");
             
             var pendingMigrations = await dbContext.Database.GetPendingMigrationsAsync();
@@ -30,8 +31,7 @@ public static class MigrationExtensions
         }
         catch (Exception ex)
         {
-            logger.LogError(ex, "An error occurred while migrating the database");
-            throw;
+            logger.LogError(ex, "An error occurred while migrating the database. App will continue starting.");
         }
     }
 }

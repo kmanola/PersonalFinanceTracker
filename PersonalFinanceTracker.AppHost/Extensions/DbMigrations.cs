@@ -41,7 +41,6 @@ public static class ExtMethods
                             RedirectStandardOutput = true,
                             WorkingDirectory = projectDirectory
                         };
-                        // dotnet ef migrations bundle --self-contained -r linux-x64
                         psi = psi.WithArgs("ef", "migrations", "bundle", "--self-contained", "-r", "linux-x64");
 
                         await psi.ExecuteAsync(context.Logger, context.CancellationToken);
@@ -74,8 +73,6 @@ public static class ExtMethods
             }
             return psi;
         }
-
-        // Exec with logs
 
         public Task<int> ExecuteAsync(ILogger logger, CancellationToken cancellationToken = default)
         {
