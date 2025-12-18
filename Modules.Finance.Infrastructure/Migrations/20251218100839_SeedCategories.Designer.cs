@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Modules.Finance.Infrastructure.Data;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Modules.Finance.Infrastructure.Migrations
 {
     [DbContext(typeof(FinanceDbContext))]
-    partial class FinanceDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251218100839_SeedCategories")]
+    partial class SeedCategories
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -162,18 +165,6 @@ namespace Modules.Finance.Infrastructure.Migrations
                             Id = 15,
                             Description = "Cash withdrawals",
                             Name = "ATM"
-                        },
-                        new
-                        {
-                            Id = 16,
-                            Description = "Hotels and travel accommodations",
-                            Name = "Travel"
-                        },
-                        new
-                        {
-                            Id = 17,
-                            Description = "Haircuts and personal grooming",
-                            Name = "Personal Care"
                         });
                 });
 

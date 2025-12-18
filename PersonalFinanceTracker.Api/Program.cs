@@ -1,8 +1,12 @@
+using System.Text;
 using Microsoft.EntityFrameworkCore;
 using Modules.Finance.Features.Shared.Contracts;
 using Modules.Finance.Features.Shared.Services;
 using Modules.Finance.Infrastructure.Data;
 using PersonalFinanceTracker.Api.Extensions;
+
+// Register the code pages encoding provider for Windows-1252 support
+Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -56,6 +60,25 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.MapGet("/", () => "Hello World!");
+
+app.MapPost("/upload", async (IFormFile file, ICsvParserService csvParserService) =>
+{
+    if (file == null || file.Length == 0)
+    {
+        return Results.BadRequest("No file uploaded.");
+    }
+
+    var tempFilePath = Path.GetTempFileName();
+    await using (var stream = File.Create(tempFilePath))
+    {
+        await file.CopyToAsync(stream);
+    }
+
+    var result = await csvParserService.ParseTransactionsAsync(tempFilePath);
+
+    return Results.Ok(new { FilePath = tempFilePath, ParsedData = result });
+})
+.DisableAntiforgery();
 
 app.MapGet("/migrations/status", async (FinanceDbContext db) =>
 {

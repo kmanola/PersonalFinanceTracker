@@ -5,9 +5,14 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>3f883b00-2e23-4dea-8490-ee8893156c4e</UserSecretsId>
+    <!-- Only set RuntimeIdentifier during publish, not during build -->
+    <PublishSelfContained>true</PublishSelfContained>
+  </PropertyGroup>
+
+  <!-- Apply x86 settings only when publishing -->
+  <PropertyGroup Condition="'$(PublishProtocol)' != '' Or '$(IsPublishing)' == 'true'">
     <RuntimeIdentifier>win-x86</RuntimeIdentifier>
     <PlatformTarget>x86</PlatformTarget>
-    <PublishSelfContained>true</PublishSelfContained>
   </PropertyGroup>
 
   <ItemGroup>

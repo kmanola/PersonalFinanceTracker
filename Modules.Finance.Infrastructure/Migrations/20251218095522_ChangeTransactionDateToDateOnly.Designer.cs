@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Modules.Finance.Infrastructure.Data;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Modules.Finance.Infrastructure.Migrations
 {
     [DbContext(typeof(FinanceDbContext))]
-    partial class FinanceDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251218095522_ChangeTransactionDateToDateOnly")]
+    partial class ChangeTransactionDateToDateOnly
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -71,110 +74,6 @@ namespace Modules.Finance.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Description = "Default category for unmatched transactions",
-                            Name = "Uncategorized"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Description = "Grocery shopping",
-                            Name = "Groceries"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Description = "Restaurants and dining out",
-                            Name = "Food & Dining"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Description = "Public transport and travel",
-                            Name = "Transportation"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Description = "Medical and pharmacy expenses",
-                            Name = "Healthcare"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Description = "Streaming, games, and leisure",
-                            Name = "Entertainment"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Description = "Phone, internet, and electricity",
-                            Name = "Utilities"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Description = "Insurance and security services",
-                            Name = "Insurance"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            Description = "General retail shopping",
-                            Name = "Shopping"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            Description = "Student loans and education expenses",
-                            Name = "Education"
-                        },
-                        new
-                        {
-                            Id = 11,
-                            Description = "Salary, benefits, and other income",
-                            Name = "Income"
-                        },
-                        new
-                        {
-                            Id = 12,
-                            Description = "Union and membership fees",
-                            Name = "Membership"
-                        },
-                        new
-                        {
-                            Id = 13,
-                            Description = "Payment services and financial fees",
-                            Name = "Financial Services"
-                        },
-                        new
-                        {
-                            Id = 14,
-                            Description = "Swish payments",
-                            Name = "Swish"
-                        },
-                        new
-                        {
-                            Id = 15,
-                            Description = "Cash withdrawals",
-                            Name = "ATM"
-                        },
-                        new
-                        {
-                            Id = 16,
-                            Description = "Hotels and travel accommodations",
-                            Name = "Travel"
-                        },
-                        new
-                        {
-                            Id = 17,
-                            Description = "Haircuts and personal grooming",
-                            Name = "Personal Care"
-                        });
                 });
 
             modelBuilder.Entity("Modules.Finance.Domain.Entities.Transaction", b =>

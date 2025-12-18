@@ -24,16 +24,16 @@ public sealed class TransactionCsvMap : ClassMap<TransactionCsvRecord>
 
 public record TransactionCsvRecord
 {
-    public int RowNumber { get; init; }
-    public string ClearingNumber { get; init; } = string.Empty;
-    public string AccountNumber { get; init; } = string.Empty;
-    public string Product { get; init; } = string.Empty;
-    public string Currency { get; init; } = string.Empty;
-    public DateTime BookingDate { get; init; }
-    public DateTime TransactionDate { get; init; }
-    public DateTime CurrencyDate { get; init; }
-    public string Reference { get; init; } = string.Empty;
-    public string Description { get; init; } = string.Empty;
-    public decimal Amount { get; init; }
-    public decimal BookedBalance { get; init; }
+    public int RowNumber { get; set; }
+    public string ClearingNumber { get; set; } = string.Empty;
+    public string AccountNumber { get; set; } = string.Empty;
+    public string Product { get; set; } = string.Empty;
+    public string Currency { get; set; } = string.Empty;
+    public DateTime BookingDate { get; set; }
+    public DateTime TransactionDate { get; set; }
+    public DateTime CurrencyDate { get; set; }
+    public string Reference { get; set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
+    public decimal Amount { get; set; }
+    public decimal BookedBalance { get; set; }
 }

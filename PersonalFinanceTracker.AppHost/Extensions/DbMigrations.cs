@@ -19,9 +19,9 @@ public static class ExtMethods
                 .WithArgs("ef")
                 .WithArgs("database")
                 .WithArgs("update")
-                .WithArgs("--no-build")
                 .WithArgs("--connection")
                 .WithArgs(database.Resource)
+                .WithArgs("--verbose")
                 .WithEnvironment("DOTNET_ENVIRONMENT", "Development")
                 .WaitFor(database);
 

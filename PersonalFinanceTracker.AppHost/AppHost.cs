@@ -13,17 +13,7 @@ postgres.WithPgAdmin();
 
 var api = builder.AddProject<Projects.PersonalFinanceTracker_Api>("personalfinancetracker-api")
        .WithReference(postgresdb)
-       .WithExternalHttpEndpoints()
-       .WithUrlForEndpoint("https", url =>
-       {
-           url.DisplayText = "Swagger UI";
-           url.Url = "/swagger";
-       })
-       .WithUrlForEndpoint("http", url =>
-       {
-           url.DisplayText = "Swagger UI (HTTP)";
-           url.Url = "/swagger";
-       });
+       .WithExternalHttpEndpoints();
 
 if (builder.ExecutionContext.IsRunMode)
 {

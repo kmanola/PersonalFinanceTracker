@@ -53,19 +53,22 @@ public class CsvParserService : ICsvParserService
                 record.Description,
                 record.Reference);
 
-            // TODO Fixa category id igenom listan
-            var categoryId = 1;
+            var categoryId = categoryCache.TryGetValue(categoryName, out var id) ? id : 1;
 
             transactions.Add(new Transaction
             {
                 Name = record.Reference,
                 Description = record.Description,
                 Amount = Math.Abs(record.Amount),
-                Date = record.TransactionDate,
+                Date = DateOnly.FromDateTime(record.TransactionDate),
                 Type = DetermineTransactionType(record),
                 CategoryId = categoryId
             });
         }
+
+        // TODO fixa category först, lägg till dem i databasen
+        _dbContext.Transactions.AddRange(transactions);
+        await _dbContext.SaveChangesAsync();
 
         return transactions;
     }
